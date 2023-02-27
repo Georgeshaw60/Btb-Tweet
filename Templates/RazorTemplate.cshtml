@@ -1,0 +1,96 @@
+﻿@using DotNetNuke.Common;
+@using System.Linq;
+@using DotNetNuke.Web.Client.ClientResourceManagement;
+@using BiteTheBullet.BtbTweet.WebServices;
+
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+
+@{
+
+    var tweets = new Twitter().LoadTweets(Dnn.Portal.PortalId, Dnn.Module.TabModuleID);
+
+    var twitterurl = "https://twitter.com/";
+
+
+}
+
+<div id="btbTwitterContainer">
+    <div class="tweet-list">
+        <div class="row">
+            @foreach (var tweet in tweets)
+            {
+
+
+                <div class="col-lg-4 col-md-6 col-12 d-flex align-items-stretch my-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="tweet-avatar">
+                                @if (tweet.MediaUrl != null)
+                                {
+                                    foreach (var img in tweet.MediaUrl)
+                                    {
+                                        <a href="@twitterurl@tweet.TwitterUsername/status/@tweet.StatusId" target="_blank">
+                                            <img src="@img" alt="@tweet.ProfileName" class="img-fluid w-100" />
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    // if no image use the twiiter logo
+                                    <img src="@tweet.ProfileImage" alt="@tweet.ProfileName" class="img-fluid w-100" />
+                                }
+                            </div>
+                        </div>
+                        <div class="tweet-body card-body pb-0">
+                            <div class="twitter-user">
+                                <div class="col-12">
+                                    <div class="row d-flex align-items-center pb-2">
+                                        <div class="col-3 pl-0">
+                                            <a href="@twitterurl@tweet.TwitterUsername" target="_blank" class="text-dark">
+                                                <img src="@tweet.ProfileImage" alt="@tweet.ProfileName" class="img-fluid tweet-avatar-pic" />
+                                            </a>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <a href="@twitterurl@tweet.TwitterUsername" target="_blank" class="text-dark">
+                                                    <p class="mb-0 pr-1">@tweet.ProfileName</p>
+                                                </a>
+                                                <img src="~/DesktopModules/BtbTweet/images/twitter-tick.png" class="tweet-tick @(tweet.Verified == true ? "d-block" : "d-none")" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex">
+                                                    @@
+                                                    <p class="mb-0">@tweet.TwitterUsername</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @tweet.ProcessedText
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-xl-7 col-md-12 col-6">
+                                    <p><b>@tweet.RetweetCount</b> Retweets</p>
+                                </div>
+                                <div class="col-xl-5 col-md-12 col-6 text-xl-right text-md-left text-right">
+                                    <p><b>@tweet.FavouriteCount</b> Likes</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-7 col-7">
+                                    @tweet.Created
+                                </div>
+                                <div class="col-xl-5 col-5 text-xl-right text-md-left text-right">
+                                    <a href="@twitterurl@tweet.TwitterUsername/status/@tweet.StatusId" target="_blank">Read more</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

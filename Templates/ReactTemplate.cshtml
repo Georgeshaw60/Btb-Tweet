@@ -1,0 +1,20 @@
+﻿@using DotNetNuke.Common;
+@using System.Linq;
+@using DotNetNuke.Web.Client.ClientResourceManagement;
+
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+
+@{ 
+    ClientResourceManager.RegisterScript(Model.Page, "~/DesktopModules/BtbTweet/dist/js/btbtweet.js", 50, "DnnFormBottomProvider");
+}
+
+
+<div id="btbTweets"></div>
+
+<script type="text/javascript">
+
+    var btbContext = {};
+    btbContext.portalId = @Dnn.Portal.PortalId;
+    btbContext.tabModuleId = @Dnn.Module.TabModuleID;
+
+</script>

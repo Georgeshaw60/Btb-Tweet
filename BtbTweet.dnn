@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="BtbTweet" type="Module" version="02.00.00">
+      <friendlyName>BtbTweet</friendlyName>
+      <description>BtbTweet displays twitter tweets on your portal</description>
+      <owner>
+        <name>Bite the Bullet</name>
+        <organization>Bite the Bullet</organization>
+        <url>http://www.bitethebullet.co.uk</url>
+        <email>bitethebullet.uk@gmail.com</email>
+      </owner>
+      <license src="eula.html"></license>
+      <releaseNotes>
+      </releaseNotes>
+      <azureCompatible>true</azureCompatible>
+      <components>
+        <component type="Script">
+          <scripts>
+          </scripts>
+        </component>
+
+        <component type="Module">
+
+          <desktopModule>
+            <moduleName>BtbTweet</moduleName>
+            <foldername>BtbTweet</foldername>
+            <businessControllerClass></businessControllerClass>
+            <supportedFeatures />
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>BtbTweet</friendlyName>
+                <defaultCacheTime>0</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>DesktopModules/BtbTweet/ViewBtbTweet.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>DesktopModules/BtbTweet/Settings.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle></controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl></helpUrl>
+                    <viewOrder>0</viewOrder>
+                  </moduleControl>
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+
+          <eventMessage>
+            <processorType>DotNetNuke.Entities.Modules.EventMessageProcessor, DotNetNuke</processorType>
+            <processorCommand>UpgradeModule</processorCommand>
+            <attributes>
+              <businessControllerClass></businessControllerClass>
+              <desktopModuleID>[DESKTOPMODULEID]</desktopModuleID>
+              <upgradeVersionsList>01.00.00</upgradeVersionsList>
+            </attributes>
+          </eventMessage>
+
+        </component>
+
+        <component type="Assembly">
+          <assemblies>
+            <basePath>bin</basePath>
+            <assembly>
+              <name>BtbTweet.dll</name>
+            </assembly>
+          </assemblies>
+        </component>
+
+        <component type="ResourceFile">
+            <resourceFiles>
+                <basePath>DesktopModules/BtbTweet</basePath>
+                <resourceFile>
+                    <name>Resources.zip</name>
+                </resourceFile>
+            </resourceFiles>
+        </component>
+
+
+        <component type="File">
+          <files>
+            <basePath>DesktopModules\BtbTweet</basePath>
+            <file>
+              <name>BtbTweet.dnn</name>
+            </file>
+            <file>
+              <name>eula.html</name>
+            </file>
+          </files>
+        </component>
+          
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
